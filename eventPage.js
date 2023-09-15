@@ -16,9 +16,15 @@ chrome.runtime.onInstalled.addListener(() => {
         active: true,
         lastFocusedWindow: true
       });
+      const activeTav = tabs[0];
+      const response = await chrome.tabs.sendMessage(activeTab.id, {
+        type: e.menuItemId,
+        src: e.srcUrl
+      })
+      console.log(response, 'response');
     }
     catch(e) {
-
+      console.error(e);
     }
 
 });
