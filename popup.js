@@ -1,10 +1,10 @@
-document.querySelector('button').addEventListener('click', () => {
+document.querySelector('button').addEventListener('click', async () => {
     try {
         const tabs = await chrome.tabs.query({
             active: true,
-            lastFocusedWindow: true
         });
         const activeTab = tabs[0];
+        console.log(tabs);
         const response = await chrome.tabs.sendMessage(activeTab.id, {
             type: 'background' ,
             color: 'blue'
