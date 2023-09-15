@@ -6,3 +6,19 @@ chrome.runtime.onInstalled.addListener(() => {
     contexts: ['all'] // allows us to put right click on everything
   })
 });
+
+  chrome.contextMenus.onClicked.addListener(async (e) => {
+    if (e.mediaType !== "image") {
+      return;
+    }
+    try {
+      const tabs = await chrome.tabs.query({
+        active: true,
+        lastFocusedWindow: true
+      });
+    }
+    catch(e) {
+
+    }
+
+});
