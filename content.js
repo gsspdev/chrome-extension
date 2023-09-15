@@ -1,1 +1,11 @@
-console.log('I am a content script running, this is where you can change the html of a page.');
+chrome.runtime.onMessage.addListener((message, sender, reply) => {
+    console.log(message, sender, reply);
+    reply('ok');
+    if (message.type != "image") {
+        return;
+    }
+
+    if (message.src.indexOf('http') === 0) {
+        window.open(message.src, 'blank');
+    }
+})
